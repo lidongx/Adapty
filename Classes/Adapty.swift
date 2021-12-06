@@ -332,6 +332,14 @@ import UIKit
         }
     }
     
+    @objc public func getShortProducts()->[ProductModel]?{
+        return iapManager.shortProducts
+    }
+    
+    @objc public func getShortPaywalls()->[PaywallModel]?{
+        return iapManager.shortPaywalls
+    }
+    
     @objc public class func getPaywalls(forceUpdate: Bool = false, _ completion: @escaping PaywallsCompletion) {
         LoggerManager.logMessage("Calling now: \(#function)")
         
