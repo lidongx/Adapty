@@ -95,11 +95,11 @@ import UIKit
         super.init()
     }
     
-    @objc public class getShortProducts()->[ProductModel]?{
+    @objc public class func getShortProducts()->[ProductModel]?{
         return shared.iapManager.shortProducts
     }
     
-    @objc public func getShortPaywalls()->[PaywallModel]?{
+    @objc public class func getShortPaywalls()->[PaywallModel]?{
         return shared.iapManager.shortPaywalls
     }
     
