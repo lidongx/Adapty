@@ -95,6 +95,14 @@ import UIKit
         super.init()
     }
     
+    @objc public class getShortProducts()->[ProductModel]?{
+        return shared.iapManager.shortProducts
+    }
+    
+    @objc public func getShortPaywalls()->[PaywallModel]?{
+        return shared.iapManager.shortPaywalls
+    }
+    
     @objc public class func activate(_ apiKey: String) {
         activate(apiKey, observerMode: false, customerUserId: nil)
     }
@@ -332,13 +340,7 @@ import UIKit
         }
     }
     
-    @objc public func getShortProducts()->[ProductModel]?{
-        return iapManager.shortProducts
-    }
-    
-    @objc public func getShortPaywalls()->[PaywallModel]?{
-        return iapManager.shortPaywalls
-    }
+ 
     
     @objc public class func getPaywalls(forceUpdate: Bool = false, _ completion: @escaping PaywallsCompletion) {
         LoggerManager.logMessage("Calling now: \(#function)")
