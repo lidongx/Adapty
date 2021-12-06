@@ -23,13 +23,13 @@ class IAPManager: NSObject {
             DefaultsManager.shared.cachedPaywalls = paywalls
         }
     }
-    var shortPaywalls: [PaywallModel]?
+    public var shortPaywalls: [PaywallModel]?
     private(set) var products = DefaultsManager.shared.cachedProducts {
         didSet {
             DefaultsManager.shared.cachedProducts = products
         }
     }
-    var shortProducts: [ProductModel]?
+    public var shortProducts: [ProductModel]?
     private var productIDs: Set<String>? {
         if let ids = shortProducts?.map({ $0.vendorProductId }) {
             return Set(ids)
