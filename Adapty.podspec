@@ -28,7 +28,7 @@ Adapty helps you track business metrics, and lets you run ad campaigns targeted 
 
   s.swift_versions = ['5.0', '5.1']
   
-  s.source_files = 'Adapty/Classes/*'
+  s.source_files = 'Adapty/Classes/*.swift'
 
   s.frameworks = 'Foundation', 'StoreKit'
   s.ios.framework = 'UIKit', 'iAd', 'AdSupport'
