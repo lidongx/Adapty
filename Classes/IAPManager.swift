@@ -503,6 +503,10 @@ extension IAPManager: SKPaymentTransactionObserver {
 
         let product = purchaseInfo?.product ?? self.product(for: transaction)
         
+        if product != nil{
+            productAnalystic(transaction)
+        }
+        
         var discount: ProductDiscountModel?
         if #available(iOS 12.2, OSX 10.14.4, *) {
             // trying to extract promotional offer from transaction
@@ -539,6 +543,28 @@ extension IAPManager: SKPaymentTransactionObserver {
                 }
             }
         }
+    }
+    
+    func productAnalystic(_ transaction:SKPaymentTransaction){
+        DispatchQueue.main.async {
+            let key = "\(transaction.payment.productIdentifier)_start_time_key"
+            if let date = transaction.transactionDate{
+                if self.userDefaultGetDouble(key: key) == 0{
+                    UserDefaults.standard.set(date.timeIntervalSince1970, forKey: key)
+                }else{
+                    let time = self.userDefaultGetDouble(key: key)
+                    if date.timeIntervalSince1970 < time{
+                        UserDefaults.standard.set(date.timeIntervalSince1970, forKey: key)
+                    }
+                }
+            }
+        }
+    }
+    
+    func userDefaultGetDouble(key: String) -> Double {
+        let defaults = UserDefaults.standard
+        let value = defaults.double(forKey: key)
+        return value
     }
     
     private func failed(_ transaction: SKPaymentTransaction) {
